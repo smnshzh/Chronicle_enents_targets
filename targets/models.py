@@ -103,6 +103,7 @@ class SetVisitorTarget(models.Model):
     visitor = models.ForeignKey(Visitor,on_delete=models.CASCADE)
     pgroup = models.ForeignKey(ProductGroup,on_delete=models.CASCADE)
     qnty  = models.IntegerField()
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return (self.visitor,self.month,self.pgroup)

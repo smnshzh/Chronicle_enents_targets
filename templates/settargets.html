@@ -18,6 +18,7 @@
 
                 <thead>
                 <tr>
+                <th scope="col" style="cursor: pointer">ردیف </th>
 
                     <th scope="col" style="cursor: pointer">کد </th>
                     <th scope="col" style="cursor: pointer">نام ویزیتور</th>
@@ -28,9 +29,13 @@
 
                 </tr>
                 <tbody>
+                <form action="" method="post">
+                    <input type="hidden" name="set_targets">
+                    <input type="hidden" name="month" value="{{ month.0 }}">
                 {% if visitors %}
                 {% for visitor  in visitors %}
                     <tr>
+                    <td>{{ forloop.counter }}</td>
 <td>{{ visitor.code }}</td>
                 <td>{{ visitor.name }}</td>
                     <td>
@@ -39,6 +44,7 @@
                                {{ visitor.superviser.name }}
                     </td>
                     {% for pgroup in pgroups %}
+                        <input type="hidden" name="visitors" value="{{ visitor.id }}">
                 <td><input class="input-group-sm small" type="number" name="{{ pgroup.id }}" min="0">
                 </td>
                 {% endfor %}
@@ -48,6 +54,9 @@
                     {% else %}
                     <p style="direction: rtl;alignment: right">ویزیتوری تعریف نشده است</p>
                 {% endif %}
+                {% csrf_token %}
+                    <input type="submit" value="ارسال اهداف" class="btn-success btn">
+                </form>
                 </tbody>
             </table>
         </div>

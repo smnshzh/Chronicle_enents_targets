@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 import pandas as pd
-
+import json
 def insert_targets(request):
     access = TargetAccess.objects.get(user_id = request.user.id)
     centers = access.centers.all()
@@ -50,8 +50,26 @@ def insert_targets(request):
                 'pgroups': pgroups,
 
                     }
-            return render(request,'settargets.html',context=context)
+            return render(request, 'settargets.html', context=context)
+        elif "set_targets" in form:
+            month = month[int(form['month'][0])-1]
+            form.pop("month")
+            form.pop("set_targets")
+            visitors = list(set(form["visitors"]))
 
+            form.pop('visitors')
+            blanky=[]
+            for key , value in form.items():
+                gp = ProductGroup.objects.get(id=int(key))
+                maping = dict(zip(visitors,value))
+                for id , num in maping.items():
+                    blanky.append(gp.name + " برای  " + Visitor.objects.get(id=int(id)).name + " مقدار  " + num+" در ماه  "+
+                                  month[1]+ " قرار داده شد. ")
+
+            context = {
+                'blanky':blanky
+            }
+            return render(request,'blanky.html',context=context)
 
     context={
         "access":access,
