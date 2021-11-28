@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" >
+    <div class="-align-right" dir="rtl">
+    <form action="" method="post" class="form-group form-select-sm" >
+        <select name="center" value="">
+            {% for center in centers%}
+            <option  id="" value="{{ center.id }}">{{ center.name }}</option>{% endfor %}
+        </select>
+        <select name="month" id="">
+            {% for month in month %}
+            <option name="" value="{{ month.0 }}">{{ month.1 }}</option>
+            {% endfor %}
+            <input type="submit" value="بررسی فروشندگان" class="btn-success">
+            <input type="hidden" name="centermonth">
+        {% csrf_token %}
+        </select>
+
+    </form>
+    </div>
+</div>
+
+{% endblock %}

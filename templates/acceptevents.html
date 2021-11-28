@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#affect" role="tab" aria-controls="home" aria-selected="true">تاثیر گیرنده</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#effect" role="tab" aria-controls="profile" aria-selected="false">تاثیر گذار</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="affect" role="tabpanel" aria-labelledby="home-tab">
+      <div class="container mb-4 mt-3">
+      <form method="post">
+
+            <table id="datatable" class="table dataTable0" style="text-align: center">
+
+                <thead>
+                <tr>
+
+                    <th scope="col" style="cursor: pointer">کد ثبت</th>
+                    <th scope="col" style="cursor: pointer">عنوان</th>
+                    <th scope="col" style="cursor: pointer">تاریخ</th>
+                    <th scope="col" style="cursor: pointer">مرکز تاثیرگذار</th>
+                    <th scope="col" style="cursor: pointer">مراکز تاثیر پذیر</th>
+
+                    <th scope="col" style="cursor: pointer">ایجاد کننده</th>
+                    <th scope="col" style="cursor: pointer">ارسال به تاثیر گذار</th>
+
+                </tr>
+                <tbody>
+                {% for event  in affectEvents %}
+                    <tr>
+                        <td>{{ event.id }}  </td>
+                        <td title="{{ event.description }}"><a href="">{{ event.title }}</a></td>
+                        <td>{{ event.eventDate.date }}</td>
+                        <td  >{{ event.affected}}</td>
+                        <td>{{ event.effectedList }}</td>
+                    <td>{{ event.creator }}</td>
+                    <td><input type="checkbox" name="{{ event.id }}"></td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+      {% csrf_token %}
+          <input type="submit" value="ارسال" class="btn-group">
+      </form>
+        </div>
+
+
+  </div>
+  <div class="tab-pane fade" id="effect" role="tabpanel" aria-labelledby="profile-tab">
+
+      <div class="container mb-4 mt-3">
+
+      <form method="post">
+
+            <table id="datatable" class="table dataTable0" style="text-align: center">
+
+                <thead>
+                <tr>
+
+                    <th scope="col" style="cursor: pointer">کد ثبت</th>
+                    <th scope="col" style="cursor: pointer">عنوان</th>
+                    <th scope="col" style="cursor: pointer">تاریخ</th>
+                    <th scope="col" style="cursor: pointer">مرکز تاثیرگذار</th>
+                    <th scope="col" style="cursor: pointer">مراکز تاثیر پذیر</th>
+
+                    <th scope="col" style="cursor: pointer">ایجاد کننده</th>
+                    <th scope="col" style="cursor: pointer">ارسال به تاثیر گذار</th>
+                    <th scope="col" style="cursor: pointer">توضیحات</th>
+
+                </tr>
+                <tbody>
+                {% for event  in effectEvents %}
+                    <tr>
+                        <td>{{ event.id }}  </td>
+                        <td title="{{ event.description }}"><a href="">{{ event.title }}</a></td>
+                        <td>{{ event.eventDate.date }}</td>
+                        <td  >{{ event.affected}}</td>
+                        <td>{{ event.effectedList }}</td>
+                        <td>{{ event.creator }}</td>
+                        <td><input type="checkbox" name="{{ event.id }}"></td>
+                    <td>
+                        <textarea name="{{ event.id }}-des" >
+                            {{ event.description2 }}
+
+                        </textarea>
+                    </td>
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+      {% csrf_token %}
+      <input type="submit" value="ارسال" class="btn-group">
+            </form>
+        </div>
+
+  </div>
+
+</div>
+    </div>
+{% endblock %}

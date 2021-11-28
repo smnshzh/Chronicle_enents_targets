@@ -1,0 +1,556 @@
+span.form-span form select,
+body {
+    margin-bottom:50px;
+    height: 50px;
+}
+#footer {
+    position: fixed;
+    height: 50px;
+    background-color: red;
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+input {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .375rem .75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+span.form-span form label {
+    color: #999999;
+    font-weight: bold;
+    display: block;
+}
+
+span.form-span form {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+span.form-span form input,
+select,
+label,
+button,
+.btn {}
+
+.form-span * {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#time {
+    margin: 10px;
+    background-color: #4e555b;
+    color: aliceblue;
+    border-color: #1c7430;
+}
+
+span.margin-span {
+    margin: 10px;
+}
+
+span.margin-span input {
+    margin: 10px;
+}
+
+span.info {
+    margin: 40px;
+}
+
+.accountside_info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+table {
+    margin: 10px;
+}
+
+div.them div:hover {
+    border-color: cyan;
+    cursor: pointer;
+}
+
+td {
+    text-align: center
+}
+
+/* The sidebar menu */
+.sidenav {
+
+
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 25%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: grey; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+}
+
+.label {
+    alignment: left;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Style page content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*.btn-danger {*/
+
+
+/*    padding: 2px 2px;*/
+
+
+/*}*/
+
+
+/*.table-dark {*/
+
+
+/*    border-radius: 20px;*/
+
+
+/*}*/
+
+
+/*span.form-span form .quantity-input {*/
+
+
+/*    width: 50px;*/
+
+
+/*}*/
+
+
+/*li.warning {*/
+
+
+/*    color: #856404;*/
+
+
+/*    background-color: #fff3cd;*/
+
+
+/*    border-color: #ffeeba*/
+
+
+/*}*/
+
+
+/*ul.messages {*/
+
+
+/*    list-style: none;*/
+
+
+/*}*/
+
+
+/*ul.errorlist {*/
+
+
+/*    list-style: none;*/
+
+
+/*}*/
+
+
+/*.errorlist li{*/
+
+
+/*    color: #856404;*/
+
+
+/*    background-color: #fff3cd;*/
+
+
+/*    border-color: #ffeeba*/
+
+
+/*}*/
+
+
+/*.autocomplete {*/
+
+
+/*  !*the container must be positioned relative:*!*/
+
+
+/*  position: relative;*/
+
+
+/*  display: inline-block;*/
+
+
+/*}*/
+
+
+/*input {*/
+
+
+/*  border: 1px solid transparent;*/
+
+
+/*  background-color: #f1f1f1;*/
+
+
+/*  padding: 10px;*/
+
+
+/*  font-size: 16px;*/
+
+
+/*}*/
+
+
+/*input[type=text] {*/
+
+
+/*  background-color: #f1f1f1;*/
+
+
+/*  width: 100%;*/
+
+
+/*}*/
+
+
+/*input[type=submit] {*/
+
+
+/*  background-color: DodgerBlue;*/
+
+
+/*  color: #fff;*/
+
+
+/*}*/
+
+
+/*.autocomplete-items {*/
+
+
+/*  position: absolute;*/
+
+
+/*  border: 1px solid #d4d4d4;*/
+
+
+/*  border-bottom: none;*/
+
+
+/*  border-top: none;*/
+
+
+/*  z-index: 99;*/
+
+
+/*  !*position the autocomplete items to be the same width as the container:*!*/
+
+
+/*  top: 100%;*/
+
+
+/*  left: 0;*/
+
+
+/*  right: 0;*/
+
+
+/*}*/
+
+
+/*.autocomplete-items div {*/
+
+
+/*  padding: 10px;*/
+
+
+/*  cursor: pointer;*/
+
+
+/*  background-color: #fff;*/
+
+
+/*  border-bottom: 1px solid #d4d4d4;*/
+
+
+/*}*/
+
+
+/*.autocomplete-items div:hover {*/
+
+
+/*  !*when hovering an item:*!*/
+
+
+/*  cursor: pointer;*/
+
+
+/*  background-color: lightblue;*/
+
+
+/*}*/
+
+
+/*.autocomplete-active {*/
+
+
+/*  !*when navigating through the items using the arrow keys:*!*/
+
+
+/*  background-color: DodgerBlue !important;*/
+
+
+/*  color: #ffffff;*/
+
+
+/*}*/
+
+
+/*.autocomplete {*/
+
+
+/*  !*the container must be positioned relative:*!*/
+
+
+/*  position: relative;*/
+
+
+/*  display: inline-block;*/
+
+
+/*}*/
+
+
+/*input {*/
+
+
+/*  border: 1px solid transparent;*/
+
+
+/*  background-color: #f1f1f1;*/
+
+
+/*  padding: 10px;*/
+
+
+/*  font-size: 16px;*/
+
+
+/*}*/
+
+
+/*input[type=text] {*/
+
+
+/*  background-color: #f1f1f1;*/
+
+
+/*  width: 100%;*/
+
+
+/*}*/
+
+
+/*input[type=submit] {*/
+
+
+/*  background-color: DodgerBlue;*/
+
+
+/*  color: #fff;*/
+
+
+/*}*/
+
+
+/*.autocomplete-items {*/
+
+
+/*  position: absolute;*/
+
+
+/*  border: 1px solid #d4d4d4;*/
+
+
+/*  border-bottom: none;*/
+
+
+/*  border-top: none;*/
+
+
+/*  z-index: 99;*/
+
+
+/*  !*position the autocomplete items to be the same width as the container:*!*/
+
+
+/*  top: 100%;*/
+
+
+/*  left: 0;*/
+
+
+/*  right: 0;*/
+
+
+/*}*/
+
+
+/*.autocomplete-items div {*/
+
+
+/*  padding: 10px;*/
+
+
+/*  cursor: pointer;*/
+
+
+/*  background-color: #fff;*/
+
+
+/*  border-bottom: 1px solid #d4d4d4;*/
+
+
+/*}*/
+
+
+/*.autocomplete-items div:hover {*/
+
+
+/*  !*when hovering an item:*!*/
+
+
+/*  background-color: lightblue;*/
+
+
+/*}*/
+
+
+/*.autocomplete-active {*/
+
+
+/*  !*when navigating through the items using the arrow keys:*!*/
+
+
+/*  background-color: lightblue !important;*/
+
+
+/*  color: #ffffff;*/
+
+
+/*}*/

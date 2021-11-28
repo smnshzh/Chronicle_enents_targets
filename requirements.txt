@@ -1,0 +1,5 @@
+Django==3.2.8
+django_import_export==2.6.1
+django_jalali==4.3.0
+import_export==0.2.67.dev6
+

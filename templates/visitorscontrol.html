@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+    {% block Head %}
+    <script src="{% static 'jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'jquery.dataTables.min.js' %}" type="text/javascript"></script>
+
+        <script type="text/javascript" src="{% static 'datatables.min.js' %}"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="{% static 'DataTables/Buttons-1.6.1/js/dataTables.buttons.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'DataTables/Buttons-1.6.1/css/buttons.bootstrap4.css' %}">
+{% endblock %}
+{% block js %}
+    <script>
+
+</script>
+{% endblock %}
+{% block content %}
+
+    <div class="container mb-4 mt-3">
+            <h2 class="header_content" style="direction: rtl">{{ month.1 }}</h2>
+            <table id="datatable" class="table dataTable0" style="text-align: center;direction: rtl">
+
+                <thead>
+                <tr>
+                    <th scope="col" style="cursor: pointer">غیر فعال کردن </th>
+                    <th scope="col" style="cursor: pointer">کد </th>
+                    <th scope="col" style="cursor: pointer">نام ویزیتور</th>
+                    <th scope="col" style="cursor: pointer">سرپرست</th>
+
+                </tr>
+
+
+                <tbody>
+                {% if visitors %}
+<form action="" method="post">
+
+    <input type="hidden" name="center" value="{{ center.id }}">
+    <input type="hidden" name="month" value="{{ month.0 }}">
+                {% for visitor  in visitors %}
+                    <tr>
+                    <td><input type="checkbox"  name="visitor_active" value="{{ visitor.id }}"></td>
+                        <td>{{ visitor.code }}  </td>
+                <td>{{ visitor.name }}</td>
+                    <td>
+                        <select name="{{ visitor.id }}" id="" >
+                            {% for super in supervisers %}
+                            <option value="{{ super.id }}" {% if visitor.superviser.id == super.id %} selected{% endif %}>
+                                {{ super.name }}
+                            </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+
+                        {% endfor %}
+<input type="hidden" name="visitorcontrol" value="1">
+                    <input type="submit" value="اضافه کردن اهداف" class="button btn-success">
+            {% csrf_token %}
+</form>
+                    {% else %}
+                    <p style="direction: rtl;alignment: right">ویزیتوری تعریف نشده است</p>
+
+                {% endif %}
+                </tbody>
+
+
+            </table>
+        </div>
+
+{% endblock %}

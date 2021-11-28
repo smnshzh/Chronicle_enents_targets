@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block Head %}
+    <script src="{% static 'bootstrap-4-autocomplete.min' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<form method="post" class="form-group ">
+<div class="form-inline" style="justify-content: space-between;direction: rtl">
+    <input type="text" name="title" id="title" placeholder="عنوان" required>
+<label><strong>واحد تاثیر گذار</strong>
+    <select name="affect" required autocomplete="on" class="form-control admin-autocomplete">
+        {% for center in centers %}
+        <option id="{{ center.id }}" value="{{ center.id }}">
+            {{ center.name }}
+        </option>
+        {% endfor %}
+    </select></label>
+<label><strong>واحد تاثیر پذیر</strong>
+<select name="effect" multiple class="select2-selection--multiple" required>
+        {% for center in effect %}
+        <option id="{{ center.id }}" value="{{ center.id }}">
+            {{ center.name }}
+        </option>
+        {% endfor %}
+</select></label>
+    <input type="text" id="date" name="date" class="form-control" required
+           placeholder="سال-ماه-روز(13-06-1381)" pattern="{1,2}{1,2}{1,2}{1,2}-{1,2}{1,2}-{1,2}{1,2}" aria-label="date11" aria-describedby="date11">
+<p>
+    <textarea name="description" rows="400" cols="50" required ></textarea>
+    </p>
+    <input type="submit" value="تایید" required class="button_continue btn-success">
+{% csrf_token %}
+</div>
+</form>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

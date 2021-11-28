@@ -1,0 +1,201 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <!-- java-script & jquery
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script src="{% static 'jquery-3.3.1.js' %}"></script>
+<script src="{% static 'popper.min.js' %}"></script>
+<script src="{% static 'bootstrap.min.js' %}"></script>
+<script src="{% static 'bootstrap4-toggle.min.js' %}"></script>
+
+
+    <script src="{% static 'java.js' %}"></script>
+
+
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <link href="{% static 'bootstrap.min_2.css' %}">
+
+    <link href="{% static 'bootstrap4-toggle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'skeleton.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'jquery.dataTables.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'datatables.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}"> {% block Head %} {% endblock Head %}
+    <!-- Favicon
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        @font-face {font-family: "IRAN Sans Regular";
+  src: url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.eot"); /* IE9*/
+  src: url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.woff2") format("woff2"), /* chrome、firefox */
+  url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.woff") format("woff"), /* chrome、firefox */
+  url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.svg#IRAN Sans Regular") format("svg"); /* iOS 4.1- */
+}
+    </style>
+<script>
+    var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+$.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
+</script>
+
+</head>
+
+<body style="padding-bottom: 50px">
+
+
+
+    <!-- Creating a navigation bar using the
+         .navbar class of bootstrap -->
+    <div style="margin-bottom:25%">
+    <nav class="navbar navbar-expand-sm bg-dark">
+     <div style="alignment: left">
+    <a href="{% url 'index' %}" class="btn-sm btn-info"> {{ user.first_name }} {{ user.last_name}}</a>
+    <a class="button btn-danger -align-right" href="{% url 'logout' %}" id="logout" >خروج</a>
+
+        </div>
+
+        <ul class="navbar-nav ml-auto">
+            {% if event_access %}
+                {% if event_access.isManager %}
+            <li class="nav-item">
+
+                <a class="nav-link" href="{% url 'acceptEvent' %}">
+                  تایید وضعیت
+                </a>
+            </li>
+                    {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'insertEvent' %}">
+                  ثبت وضعیت
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'eventView' %}">
+                  مشاهده وضعیت
+                </a>
+            </li>
+            {% endif %}
+        <li class="nav-item">
+                <a class="nav-link" href="{% url 'insert_targets' %}">
+                    ثبت اهداف
+                </a>
+            </li>
+        </ul>
+    <a id="time" class="-align-left"></a>
+    </nav>
+
+    <div class="container">
+        {% if messages %}
+            <div style="alignment: right">
+            <ul class="messages" style="list-style: none">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} >{{ message|safe }}</li>
+                {% endfor %}
+            </ul>
+            </div>
+        {% endif %}
+
+    </div>
+    <div class="container">
+        <h2 style="animation: backwards"> {{ title }}</h2>
+    </div>
+    {% block content %} {% endblock %}
+</div>
+</body>
+<footer class="footer footer_social_item" >
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left float-right">
+        <hr class="-line-chart">
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0 mt-3">
+
+                <!-- Content -->
+                <h5 class="text-uppercase">Contact Me</h5>
+                <p>E-mail : smnshzh@gmail.com</p>
+                <p>Mobile : +989359425221</p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!">Link 2</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+{% block js %}{% endblock %}
+
+
+</html>
