@@ -21,10 +21,10 @@
 
     <!-- java-script & jquery
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<script src="{% static 'jquery-3.3.1.js' %}"></script>
-<script src="{% static 'popper.min.js' %}"></script>
-<script src="{% static 'bootstrap.min.js' %}"></script>
-<script src="{% static 'bootstrap4-toggle.min.js' %}"></script>
+
+<script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="{% static 'bootstrap/popper.min.js' %}" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="{% static 'bootstrap/bootstrap.min.js' %}" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
     <script src="{% static 'java.js' %}"></script>
@@ -56,10 +56,7 @@
   url("./plugins/fontFarsi/0b0a8c345731751b990403a2cf40fbec.svg#IRAN Sans Regular") format("svg"); /* iOS 4.1- */
 }
     </style>
-<script>
-    var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
-$.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
-</script>
+
 
 </head>
 
@@ -98,21 +95,24 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
                 </a>
             </li>
             {% endif %}
+        {% if target_access %}
         <li class="nav-item">
                 <a class="nav-link" href="{% url 'insert_targets' %}">
                     ثبت اهداف
                 </a>
             </li>
+        {% endif %}
         </ul>
     <a id="time" class="-align-left"></a>
     </nav>
 
     <div class="container">
         {% if messages %}
-            <div style="alignment: right">
-            <ul class="messages" style="list-style: none">
+            <div style="text-align: right">
+            <ul class="messages" style="alignment: right;list-style: none">
                 {% for message in messages %}
-                    <li{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} >{{ message|safe }}</li>
+                    <li{% if message.tags %} class="alert alert-{{ message.tags }}"
+                    {% endif %} >{{ message|safe }}</li>
                 {% endfor %}
             </ul>
             </div>
@@ -122,7 +122,9 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
     <div class="container">
         <h2 style="animation: backwards"> {{ title }}</h2>
     </div>
-    {% block content %} {% endblock %}
+    {% block content %}
+
+     {% endblock %}
 </div>
 </body>
 <footer class="footer footer_social_item" >
