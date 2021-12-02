@@ -106,7 +106,7 @@ class SetVisitorTarget(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return (self.visitor,self.month,self.pgroup)
+        return self.visitor.name+str(self.month)+str(self.pgroup.name)
     class Meta:
         unique_together = ('month','visitor','pgroup')
         verbose_name = "تعریف هدف"

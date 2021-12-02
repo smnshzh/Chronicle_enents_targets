@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{% load costume_filters  %}
 {% load static %}
 
     {% block Head %}
@@ -13,9 +14,9 @@
 {% endblock %}
 {% block content %}
 
-    <div class="container mb-4 mt-3">
+    <div class="container mb-4 mt-3" style="direction: rtl">
 
-            <h2 class="header_content" style="text-align: rtl">{{ month.1 }}</h2>
+            <h2 class="header_content" style="text-align: right">{{ month.1 }}</h2>
             <table id="datatable" class="table dataTable0" style="text-align: center;direction: rtl">
 
                 <thead>
@@ -34,6 +35,7 @@
                 <form action="" method="post">
                     <input type="hidden" name="set_targets">
                     <input type="hidden" name="month" value="{{ month.0 }}">
+                    <input type="hidden" name="center" value="{{ center.id }}">
                 {% if visitors %}
                 {% for visitor  in visitors %}
                     <tr>
@@ -47,7 +49,16 @@
                     </td>
                     {% for pgroup in pgroups %}
                         <input type="hidden" name="visitors" value="{{ visitor.id }}">
-                <td><input class="input-group-sm small" type="number" name="{{ pgroup.id }}" min="0">
+                <td>
+
+                    <input class="input-group-sm small"
+                           type="number"
+                           name="{{ pgroup.id }}"
+                           min="0" {% if pgroup.id in pgroup_dict %}
+                                {% if visitor.id in pgroup_dict|lookup:pgroup.id %}
+                               {% if pgroup_dict|lookup:pgroup.id|lookup:visitor.id %}
+                           value="{{ pgroup_dict|lookup:pgroup.id|lookup:visitor.id }}"
+                            {% endif %}{% endif %}{% endif %}>
                 </td>
                 {% endfor %}
 

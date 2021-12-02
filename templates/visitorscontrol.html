@@ -18,8 +18,17 @@
 </script>
 {% endblock %}
 {% block content %}
-
-    <div class="container mb-4 mt-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="direction: rtl">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#active" role="tab" aria-controls="home" aria-selected="true">کنترل فروشندگان</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#disactive" role="tab" aria-controls="profile" aria-selected="false">فعال کردن فروشنده</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent" style="direction: rtl">
+  <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="home-tab">
+      <div class="container mb-4 mt-3">
             <h2 class="header_content" style="text-align: right">{{ month.1 }}</h2>
             <table id="datatable" class="table dataTable0" style="text-align: center;direction: rtl">
 
@@ -68,5 +77,65 @@
 
             </table>
         </div>
+
+
+  </div>
+  <div class="tab-pane fade" id="disactive" role="tabpanel" aria-labelledby="profile-tab">
+
+     <div class="container mb-4 mt-3">
+            <h2 class="header_content" style="text-align: right">{{ month.1 }}</h2>
+            <table id="datatable" class="table dataTable0" style="text-align: center;direction: rtl">
+
+                <thead>
+                <tr>
+                    <th scope="col" style="cursor: pointer">غیر فعال کردن </th>
+                    <th scope="col" style="cursor: pointer">کد </th>
+                    <th scope="col" style="cursor: pointer">نام ویزیتور</th>
+                    <th scope="col" style="cursor: pointer">سرپرست</th>
+
+                </tr>
+
+
+                <tbody>
+                {% if visitors %}
+<form action="" method="post">
+
+    <input type="hidden" name="center" value="{{ center.id }}">
+    <input type="hidden" name="month" value="{{ month.0 }}">
+                {% for visitor  in disactive_visitors %}
+                    <tr>
+                    <td><input type="checkbox"  name="visitor_active" value="{{ visitor.id }}"></td>
+                        <td>{{ visitor.code }}  </td>
+                <td>{{ visitor.name }}</td>
+                    <td>
+                        <select name="{{ visitor.id }}" id="" >
+                            {% for super in supervisers %}
+                            <option value="{{ super.id }}" {% if visitor.superviser.id == super.id %} selected{% endif %}>
+                                {{ super.name }}
+                            </option>
+                                {% endfor %}
+                        </select>
+                    </td>
+
+                        {% endfor %}
+<input type="hidden" name="disactive_visitors" >
+                    <input type="submit" value="فعال کردن فروشنده" class="button btn-success">
+            {% csrf_token %}
+</form>
+                    {% else %}
+                    <p style="direction: rtl;alignment: right">ویزیتوری تعریف نشده است</p>
+
+                {% endif %}
+                </tbody>
+
+
+            </table>
+        </div>
+
+  </div>
+
+</div>
+
+
 
 {% endblock %}

@@ -55,3 +55,13 @@ class Access(models.Model):
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name
 
+
+class MessageError(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    time = jmodels.jDateTimeField(default=jdatetime.datetime.now())
+    message = models.TextField(max_length=5000)
+    description = models.TextField(null=True,blank=True)
+    inprocess= models.BooleanField(default=False)
+    processed = models.BooleanField(default=False)
+    def __str__(self):
+        return self.user.username + "had" + self.message

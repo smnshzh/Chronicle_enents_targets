@@ -8,5 +8,6 @@ urlpatterns = [
     path ('eventViewer',views.eventView,name = 'eventView'),
     path ('insertEvent',views.insertEvent,name='insertEvent'),
     path ('deletEvent<int:id>',views.deleteEvent,name = 'deletEvent'),
-    path('acceptEvent',views.acceptEvent,name='acceptEvent')
+    path('acceptEvent',views.acceptEvent,name='acceptEvent'),
+
 ]
