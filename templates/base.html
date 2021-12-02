@@ -98,11 +98,13 @@ $.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Boot
                 </a>
             </li>
             {% endif %}
+        {% if target_acces %}
         <li class="nav-item">
                 <a class="nav-link" href="{% url 'insert_targets' %}">
                     ثبت اهداف
                 </a>
             </li>
+        {% endif %}
         </ul>
     <a id="time" class="-align-left"></a>
     </nav>

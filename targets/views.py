@@ -3,7 +3,7 @@ from .models import *
 import pandas as pd
 import json
 def insert_targets(request):
-    access = TargetAccess.objects.get(user_id = request.user.id)
+    access = TargetAccess.objects.filter(user_id = request.user.id).first()
     centers = access.centers.all()
     month = SetVisitorTarget.Month.choices
     if request.method == "POST":
