@@ -3,13 +3,18 @@ from .models import *
 import pandas as pd
 import json
 def insert_targets(request):
+    # change change access from get to filter
     access = TargetAccess.objects.filter(user_id = request.user.id).first()
-    centers = access.centers.all()
+    centers = None
+    if access:
+        centers = access.centers.all()
     month = SetVisitorTarget.Month.choices
     if request.method == "POST":
         form = dict(request.POST)
         form.pop('csrfmiddlewaretoken')
         if 'centermonth' in form :
+            if not centers:
+                return redirect('insert_targets')
             center = CenterD.objects.get(id = form['center'][0] )
 
             visitors = Visitor.objects.filter(cneter=center,status=True).order_by('superviser')
@@ -36,7 +41,7 @@ def insert_targets(request):
                     visitor.status = False
                 form.pop('visitor_active')
             for key , value in form.items():
-                print(key ,value)
+
                 visitor = Visitor.objects.get(id=int(key))
                 if  visitor.superviser.id != int(value[0]):
                     visitor.superviser = Superviser.objects.get(id = int(value[0]))
