@@ -174,13 +174,35 @@ def center_targets_definde(request):
     months = CenterTargetDefinde.Month.choices
     centers = CenterD.objects.all()
     pgs = ProductGroup.objects.all()
+    if request.method == "POST":
+        form = dict(request.POST)
+        form.pop('csrfmiddlewaretoken')
+        month = form['month'][0]
+        form.pop('month')
+        sended_centers = form['center']
+        form.pop('center')
+        for key,value in form.items():
+            pg = ProductGroup.objects.get(id=int(key))
+            for center , qnt in zip(sended_centers,value):
+                qnty = 0
+                if qnt :
+                    qnty = qnt
+                    CenterTargetDefinde.objects.create(
+                        center = CenterD.objects.get(id=int(center)),
+                        Qnty=int(qnty),
+                        Pgroup=pg,
+                        month = month[0]
 
+
+                            )
+
+        print(form)
     context = {
         "months":months,
         "centers":centers,
         "pgs":pgs
     }
-    return render(request,'CenterTargetDEfinde.html',context=context)
+    return render(request,'SetCenterTargets.html',context=context)
 
 
 

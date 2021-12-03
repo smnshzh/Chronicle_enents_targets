@@ -37,6 +37,7 @@ class CenterTargetDefinde(models.Model):
     center = models.ForeignKey(CenterD,on_delete=models.CASCADE,verbose_name="مرکز توزیع")
     Pgroup = models.ForeignKey(ProductGroup,on_delete=models.CASCADE,verbose_name="گروه محصول")
     Qnty = models.IntegerField()
+    accept = models.BooleanField(default=False)
 
     class Month(models.IntegerChoices):
         فروردین = 1
