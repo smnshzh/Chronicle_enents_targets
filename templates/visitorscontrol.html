@@ -18,6 +18,19 @@
 </script>
 {% endblock %}
 {% block content %}
+    <div class="container">
+    <div class="row -align-center" >
+    <div class="col-sm">
+      <h2 class="header_content" >{{ month.1 }}</h2>
+    </div>
+    <div class="col-sm">
+      <h2 class="header_content">{{ center.name }}</h2>
+    </div>
+    <div class="col-sm">
+    <h2></h2>
+    </div>
+  </div>
+    </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist" style="direction: rtl">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#active" role="tab" aria-controls="home" aria-selected="true">کنترل فروشندگان</a>
@@ -29,7 +42,8 @@
 <div class="tab-content" id="myTabContent" style="direction: rtl">
   <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="home-tab">
       <div class="container mb-4 mt-3">
-            <h2 class="header_content" style="text-align: right">{{ month.1 }}</h2>
+
+
             <table id="datatable" class="table dataTable0" style="text-align: center;direction: rtl">
 
                 <thead>

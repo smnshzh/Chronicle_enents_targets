@@ -65,3 +65,10 @@ class MessageError(models.Model):
     processed = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username + "had" + self.message
+
+
+class Setting (models.Model):
+
+    can_add_visitors_target_without_center_target = models.BooleanField(verbose_name="امکان اضافه کردن اهداف ویزیتورها بدون هدف مرکز")
+
+
