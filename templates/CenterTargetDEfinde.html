@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="direction: rtl">
+
+
+  <li class="nav-item">
+    <a class="nav-link  active" id="month1-tab" data-toggle="tab" href="#month1" role="tab" aria-controls="month1" aria-selected="true">{{ months.0.1 }}</a>
+  </li>
+        {% for month in months %}
+            {% if month.0 != 1 %}
+        <li class="nav-item">
+    <a class="nav-link" id="month1-tab" data-toggle="tab" href="#month{{ month }}" role="tab" aria-controls="month1" aria-selected="true">{{ month.1 }}</a>
+  </li>
+            {% endif %}
+        {% endfor %}
+
+    </ul>
+
+    <div class="tab-content" id="myTabContent" style="direction: rtl">
+
+
+  <div class="tab-pane fade show active" id="month{{ months.0.0 }}" role="tabpanel" aria-labelledby="month{{ months.0.0 }}">
+      <div class="container mb-4 mt-3">
+      <table id="datatable" class="table table-bordered table-dark" style="text-align: center">
+
+                <thead>
+                <tr>
+
+                    <th scope="col" style="cursor: pointer">نام شعبه</th>
+                    {% for pg in pgs %}
+                    <th scope="col" style="cursor: pointer">{{ pg.name }}</th>
+                        {% endfor %}
+
+
+                </tr>
+                <tbody>
+                {% for center   in centers %}
+                    <tr>
+                        <td>{{ center.name }}  </td>
+                        {% for pg in pgs %}
+                        <td></td>
+                            {% endfor %}
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+  </div>
+  </div>
+    {% for month in months %}
+            {% if month.0 != 1 %}
+    <div class="tab-pane fade" id="month{{ month.0 }}" role="tabpanel" aria-labelledby="month{{ month.1}}">
+      <div class="container mb-4 mt-3">
+      <h1>{{ month.1 }}</h1>
+      <table id="datatable" class="table table-bordered table-dark" style="text-align: center">
+
+                <thead>
+                <tr>
+
+                    <th scope="col" style="cursor: pointer">نام شعبه</th>
+                    {% for pg in pgs %}
+                    <th scope="col" style="cursor: pointer">{{ pg.name }}</th>
+                        {% endfor %}
+
+
+                </tr>
+                <tbody>
+                {% for center   in centers %}
+                    <tr>
+                        <td>{{ center.name }}  </td>
+                        {% for pg in pgs %}
+                        <td></td>
+                            {% endfor %}
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+  </div>
+  </div>
+        {% endif %}
+    {% endfor %}
+
+
+
+    </div>
+        </div>
+
+{% endblock %}

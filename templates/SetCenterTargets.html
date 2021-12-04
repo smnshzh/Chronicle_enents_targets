@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load costume_filters %}
+{% block Head %}
+
+
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <form action="" method="post">
+{% csrf_token %}
+        <input type="submit" value="ثبت اهداف" class="btn-success btn">
+        <select name="month" id="month" onchange="pass_tagets()">
+            <option>انتخاب ماه</option>
+{% for month in months %}
+            <option value="{{ month.0 }}">
+                {{ month.1 }}
+            </option>
+            {% endfor %}
+        </select>
+
+
+    <table id="datatable" class="table table-bordered table-dark" style="text-align: center;direction: rtl">
+
+                <thead>
+                <tr>
+
+                    <th scope="col" style="cursor: pointer">نام شعبه</th>
+                    {% for pg in pgs %}
+                    <th scope="col" style="cursor: pointer">{{ pg.name }}</th>
+                        {% endfor %}
+
+
+                </tr>
+                <tbody>
+                {% for center   in centers %}
+                    <tr>
+                        <td>{{ center.name }} <input type="hidden" name="center" value="{{ center.id }}"> </td>
+                        {% for pg in pgs %}
+                        <td>
+                            <input name="{{ pg.id }}"
+                                   oninput="sumgroup(group{{ pg.id|safe }},sum{{ pg.id|safe }})"
+                                   type="number"  class="input-group-sm group{{ pg.id }} inputer"
+                                   style="height: fit-content;width:100%" id="{{ center.id }}-{{ pg.id }}"
+                            >
+
+                        </td>
+
+                            {% endfor %}
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+    <tfoot>
+    <tr>
+        <td>
+           مجموع
+        </td>
+        {% for pg in pgs %}
+                        <td>
+                            <input type="text" value="" id="sum{{ pg.id|safe }}" style="height: fit-content;width:100%">
+
+                        </td>
+                            {% endfor %}
+    </tr>
+    </tfoot>
+            </table>
+
+
+    </form>
+    <input type="text" id="" >
+</div>
+<script>
+        {% for pg in pgs %}
+            var group{{ pg.id|safe }} = document.getElementsByClassName("group{{ pg.id|safe }}");
+            var sum{{ pg.id|safe }} = document.getElementById("sum{{ pg.id|safe }}");
+        {% endfor %}
+        function sumgroup(group,sum) {
+
+            var sumOf = 0;
+            for (let i =0;i< group.length;i++){
+                if(group[i].value) {
+                    sumOf += parseInt(group[i].value)
+                }
+            }
+            sum.value = sumOf;
+
+        }
+        var targets_dict = {{ targets_dict|safe }};
+        function pass_tagets() {
+            var inputers = document.getElementsByClassName("inputer");
+            var get_month_num = document.getElementById("month").value;
+
+            var selected_month = targets_dict[get_month_num];
+            if (selected_month){
+            for (let i =0;i<inputers.length;i++){
+                let select_inputer = inputers[i];
+                let inputer_id = select_inputer.id;
+                let qnty = selected_month[inputer_id]
+                if (qnty){
+                    select_inputer.value = parseInt(qnty)
+                }
+                 else {
+                     select_inputer.value = ""
+                }
+
+                }
+
+            }else {
+                     for (let i =0;i<inputers.length;i++){
+                         let select_inputer = inputers[i];
+                         select_inputer.value = ""
+
+
+                     }
+
+        }}
+
+    </script>
+{% endblock %}

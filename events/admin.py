@@ -7,11 +7,13 @@ class CenterAdmin(ExportActionMixin,admin.ModelAdmin):
 
 class EventAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ["title","affected","effectedList","date","firstAccept","secendAccept"]
+class MessageErrorAdmin(admin.ModelAdmin):
+    list_display = ["user","message","time","description"]
 
 admin.site.register(Center,CenterAdmin)
 admin.site.register(Event,EventAdmin)
 admin.site.register(Access)
-
+admin.site.register(MessageError)
 
 
 

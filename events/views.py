@@ -134,3 +134,14 @@ def acceptEvent(request):
         "effectEvents":effectEvents,
     }
     return render(request,'acceptevents.html',context=context)
+
+
+@login_required(login_url="login")
+def message_error(request,e,filename):
+    MessageError.objects.create(
+        user=User.objects.get(id=request.user.id),
+        message=f"line :{e.__traceback__.tb_lineno}\n"
+                f"file name :{filename}\n"
+                f"message : {e.__str__()}\n"
+    )
+    return render(request,'message_error.html')
