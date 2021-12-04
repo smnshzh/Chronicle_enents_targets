@@ -133,12 +133,15 @@ import os
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
+STATIC_ROOT = 'statics'
+
 
 STATICFILES_DIRS = (os.path.join (BASE_DIR, 'templates/css'),)
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join (BASE_DIR, 'media/Products')
+
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_EXPIRE_SECONDS = 3600
