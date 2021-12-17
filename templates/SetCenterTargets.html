@@ -89,10 +89,10 @@
         }
         var targets_dict = {{ targets_dict|safe }};
         function pass_tagets() {
-            var inputers = document.getElementsByClassName("inputer");
-            var get_month_num = document.getElementById("month").value;
+            let inputers = document.getElementsByClassName("inputer");
+            let get_month_num = document.getElementById("month").value;
             let sum_input = document.getElementsByClassName("sumation")
-            var selected_month = targets_dict[get_month_num];
+            let selected_month = targets_dict[get_month_num];
             if (selected_month){
             for (let i =0;i<inputers.length;i++){
                 let select_inputer = inputers[i];

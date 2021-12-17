@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_jalali',
     'events',
-    'targets'
+    'targets',
+    'products'
 ]
 
 MIDDLEWARE = [
