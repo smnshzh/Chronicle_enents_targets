@@ -1,6 +1,8 @@
 from .models import Access
 from targets.models import TargetAccess
 
+
+
 def access(request):
     if request.user.is_authenticated:
         return {"event_access": Access.objects.filter(user=request.user).first(),
@@ -10,4 +12,5 @@ def access(request):
         return {"event_access":False,
                 "target_access" :False
                 }
+
 

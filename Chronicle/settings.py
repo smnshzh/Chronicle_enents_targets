@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_jalali',
     'events',
     'targets',
-    'products'
+    'products',
+    'Dashboard'
 ]
 
 MIDDLEWARE = [
