@@ -15,18 +15,20 @@
         {{ group }}
         {% endif %}
     </h3>
-        <form method="post">
-            <select name="goodgroup" id="">
+        <form method="post"class="form-check-inline">
+       <label for="goodgrup"> تولید کننده</label>
+            <select name="goodgroup" id="goodgrup">
                 {% for item in manufacturer %}
 {#                    {% if item|lookup:1 in inData %}#}
                 <option value="{{ item|lookup:0 }}">{{ item|lookup:1 }}</option>{% endfor %}
 {#                    {% endif %}#}
-
-                    <select name="month" id="">
+            </select>
+        <label for="goodgrup">ماه </label>
+                    <select name="month" id="month">
 
                     {% for item in rangeMonth %}
 {#                    {% if item|lookup:1 in inData %}#}
-                <option value="{{ item|lookup:0 }}">{{ item|lookup:1 }}</option>{% endfor %}
+                <option value="{{ item }}">{{ item }}</option>{% endfor %}
 {#                    {% endif %}#}
 
                     </select>

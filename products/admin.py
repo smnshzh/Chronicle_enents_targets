@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(ProductGroup)
 admin.site.register(ProductInfo)
 admin.site.register(CarInfo)
+admin.site.register(MainGroup)

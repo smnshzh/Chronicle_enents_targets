@@ -13,17 +13,19 @@ def saleInfo(request):
     month = None
     if request.method == "POST":
         goodgroup = request.POST["goodgroup"]
+        month = request.POST["month"]
         groupName = cursor.execute(f'SELECT * FROM Manufacturer WHERE ID = {int(goodgroup)}').fetchall()[0][1]
         if month :
             month = request.POST["month"]
 
     Data = None
     if goodgroup and month :
-        Data = pd.read_sql(f'SELECT SellId,SellDate,ManufacturerName,ManufacturerId,SellPackQty,DCName FROM SalesReview WHERE ManufacturerId ={int(goodgroup)}',cnxn)
+        Data = pd.read_sql(f'SELECT SellId,SellDate,ManufacturerName,ManufacturerId,SellPackQty,DCName FROM SalesReview WHERE ManufacturerId ={int(goodgroup)} AND ',cnxn)
 
 
     else:
-        Data = pd.read_sql('SELECT SellId,SellDate,ManufacturerName,SellPackQty,DCName FROM SalesReview',cnxn)
+        Data = pd.read_sql('SELECT SellId,SellDate,ManufacturerName,SellPackQty,DCName,DCId'
+                           ' FROM SalesReview WHERE DCId IN (1,2,3,4,6,7,8,9,10,11,12,13) ',cnxn)
 
 
     Data["year"]= Data["SellDate"].str[:4]

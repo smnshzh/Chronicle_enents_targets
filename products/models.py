@@ -1,19 +1,26 @@
 from django.db import models
-
-
-class ProductGroup (models.Model):
+class MainGroup(models.Model):
     code = models.IntegerField()
     name = models.CharField(max_length=255)
     def __str__(self):
         return self.name
 
+
+
+class ProductGroup (models.Model):
+    code = models.IntegerField()
+    name = models.CharField(max_length=255)
+    maingroup = models.ForeignKey(MainGroup,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+
 class ProductInfo(models.Model):
-    code1 = models.IntegerField(unique=True)
-    code2 = models.IntegerField()
+    code1 = models.BigIntegerField(unique=True)
+    code2 = models.BigIntegerField()
     name = models.CharField(max_length=255)
     group = models.ForeignKey(ProductGroup,on_delete=models.CASCADE)
     #gr
-    weight = models.IntegerField()
+    weight = models.BigIntegerField()
     #cm
     height = models.FloatField()
     width = models.FloatField()
@@ -32,7 +39,7 @@ class ProductInfo(models.Model):
     def __str__(self):
         return self.name
 class CarInfo (models.Model):
-    code = models.IntegerField()
+    code = models.BigIntegerField()
     name = models.CharField(max_length=255)
     #cm3
     capacity = models.FloatField()
