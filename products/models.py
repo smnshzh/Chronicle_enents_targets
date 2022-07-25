@@ -11,6 +11,7 @@ class ProductGroup (models.Model):
     code = models.IntegerField()
     name = models.CharField(max_length=255)
     maingroup = models.ForeignKey(MainGroup,on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
     def __str__(self):
         return self.name
 
@@ -38,6 +39,7 @@ class ProductInfo(models.Model):
 
     def __str__(self):
         return self.name
+print("3")
 class CarInfo (models.Model):
     code = models.BigIntegerField()
     name = models.CharField(max_length=255)

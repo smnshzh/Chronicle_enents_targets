@@ -174,7 +174,7 @@ def insert_targets(request):
 
 def center_targets_definde(request):
     months = CenterTargetDefinde.Month.choices
-    centers = CenterD.objects.all()
+    centers = TargetAccess.objects.get(user=request.user).centers.all()
     pgs = ProductGroup.objects.all()
 
 
