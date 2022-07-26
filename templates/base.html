@@ -68,66 +68,81 @@
 
     <!-- Creating a navigation bar using the
          .navbar class of bootstrap -->
-    <div style="margin-bottom:25%">
-    <nav class="navbar navbar-expand-sm bg-dark">
-     <div>
-
-
-
-        </div>
+    <div  style="margin-bottom:25%">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
 
         <ul class="navbar-nav ml-auto">
 
 
-            {% if event_access %}
-
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <li class="nav-item">
+        {% if user.first_name %}
+    <a href="{% url 'index' %}" class="btn btn-outline-success me-2"> {{ user.first_name }} {{ user.last_name}}</a>
+        {% else %}
+        <a href="{% url 'index' %}" class="btn btn-outline-success me-2"> صفحه اصلی</a>
+    {% endif %}
+        </li>
+                        {% if event_access %}
                 {% if event_access.isManager %}
             <li class="nav-item">
-
                 <a class="btn btn-outline-success me-2" href="{% url 'acceptEvent' %}">
                   تایید وضعیت
                 </a>
             </li>
+                    </div>
                     {% endif %}
+                <div class="collapse navbar-collapse" id="navbarCollapse">
             <li class="nav-item">
                 <a class="btn btn-outline-success me-2" href="{% url 'insertEvent' %}">
                   ثبت وضعیت
                 </a>
             </li>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
             <li class="nav-item">
                 <a class="btn btn-outline-success me-2" href="{% url 'eventView' %}">
                   مشاهده وضعیت
                 </a>
             </li>
+                </div>
             {% endif %}
         {% if target_access %}
+            <div class="collapse navbar-collapse" id="navbarCollapse">
         <li class="nav-item">
                 <a class="btn btn-outline-success me-2" href="{% url 'insert_targets' %}">
                      ثبت اهداف ویزیتورها
                 </a>
             </li>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
             <li class="nav-item">
                 <a class="btn btn-outline-success me-2" href="{% url 'center_target_definde' %}">
                      ثبت اهداف مراکز
                 </a>
             </li>
+            </div>
         {% endif %}
+        <div class="collapse navbar-collapse" id="navbarCollapse">
         <li class="nav-item">
                 <a class="btn btn-outline-success me-2" href="{% url 'dashboard' %}">
                      داشبورد گزارشات
                 </a>
             </li>
+        </div>
 {#        <li class="nav-item">#}
 {#                <a class="btn btn-outline-success me-2" href="{% url 'product' %}">#}
 {#                     products#}
 {#                </a>#}
 {#            </li>#}
         </ul>
+<div class="nav-item sm-auto">
 
-    <a href="{% url 'index' %}" class="btn-sm btn-info"> {{ user.first_name }} {{ user.last_name}}</a>
+
      <a class="btn btn-outline-danger me-2d" href="{% url 'logout' %}" id="logout" >خروج</a>
         <a id="time" class="fa-align-right" style="width: 4%;align-items: center"></a>
-
+</div>
+    </div>
     </nav>
 
     <div class="container">

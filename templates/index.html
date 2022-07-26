@@ -2,7 +2,7 @@
 
     {% block Head %}{% endblock %}{% block content %}
         <div class="container">
-<svg version="1.1" width="80%" height="80%"
+<svg version="1.1" width="60%" height="60%"
      id="svgIran" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      viewBox="5.138 16.445 590.138 531" enable-background="new 5.138 16.445 590.138 531" xml:space="preserve" style="min-height: 50px;">
@@ -5202,4 +5202,44 @@
 </g>
 </svg>
 </div>
+        <script>
+        var data = {'Yazd':["agent",4],
+ 'Tehran':["center",1],
+ 'Markazi':["agent",3],
+ 'Isfahan':["center-agent",4],
+ 'Qom':["agent",1],
+ 'Golestan':["agent",2],
+ 'KhorasanNorth':["agent",2],
+ 'Alborz':["center",1],
+ 'Zanjan':["agent",3],
+ 'Qazvin':["center",1],
+ 'Lorestan':["agent",5],
+ 'Fars':["center",5],
+ 'Kerman':["agent",5],
+ 'KhorasanSouth':["agent",5],
+ 'Khuzestan':["center-agent",4],
+ 'KohgiluyehAndBoyerAhmad':["agent",4],
+ 'KhorasanRazavi':["center-agent",2],
+ 'ChaharMahaalBakhtiari':["agent",4],
+ 'Hamedan':["center",3],
+ 'Kurdistan':["agent",3],
+ 'Mazandaran':["center",2],
+ 'Semnan':["agent",2],
+ 'Bushehr':["agent",5],
+ 'Gilan':["center",2],
+ 'Hormozgan':["agent",5],
+ 'SistanAndBaluchestan':["agent",5],
+ 'AzerbaijanEast':["center",3],
+ 'AzerbaijanWest':["center",3],
+ 'Ardabil':["agent",3],
+ 'Kermanshah':["agent",3],
+ 'Ilam':["agent",4]}
+        var provinces = document.getElementsByClassName("province")
+ var color = ["#ffbe33","#e3ff33","#61ff33","#33f9ff","#33c1ff"]
+        for (var i = 0;i < provinces.length;i++){
+            provinces[i].setAttribute("fill" ,color[data[provinces[i].id][
+        }
+
+
+        </script>
 {% endblock %}
