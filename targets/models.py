@@ -9,7 +9,7 @@ class SaleLine(models.Model):
         verbose_name = "گروه فروش"
         verbose_name_plural = "گروههای فروش"
 
-class ProductGroup(models.Model):
+class ProductTargetGroup(models.Model):
     code = models.IntegerField(unique=True,verbose_name="کد گروه کالا")
     name = models.CharField(max_length=255,unique=True,verbose_name="نام گروه کالا")
 
@@ -24,7 +24,7 @@ class CenterD(models.Model):
     code = models.IntegerField(unique=True)
     name = models.CharField(unique=True,max_length=255,verbose_name="نام مرکز")
     lines = models.ManyToManyField(SaleLine)
-    products_group = models.ManyToManyField(ProductGroup)
+    products_group = models.ManyToManyField(ProductTargetGroup)
     def __str__(self):
         return self.name
     class Meta:
@@ -35,7 +35,7 @@ class CenterD(models.Model):
 
 class CenterTargetDefinde(models.Model):
     center = models.ForeignKey(CenterD,on_delete=models.CASCADE,verbose_name="مرکز توزیع")
-    Pgroup = models.ForeignKey(ProductGroup,on_delete=models.CASCADE,verbose_name="گروه محصول")
+    Pgroup = models.ForeignKey(ProductTargetGroup,on_delete=models.CASCADE,verbose_name="گروه محصول")
     Qnty = models.IntegerField()
     accept = models.BooleanField(default=False)
 
@@ -102,7 +102,7 @@ class SetVisitorTarget(models.Model):
         اسفند = 12
     month = models.IntegerField(choices=Month.choices,verbose_name="ماه")
     visitor = models.ForeignKey(Visitor,on_delete=models.CASCADE)
-    pgroup = models.ForeignKey(ProductGroup,on_delete=models.CASCADE)
+    pgroup = models.ForeignKey(ProductTargetGroup,on_delete=models.CASCADE)
     qnty  = models.IntegerField()
     status = models.BooleanField(default=False)
 

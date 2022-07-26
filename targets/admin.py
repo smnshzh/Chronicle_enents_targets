@@ -3,7 +3,7 @@ from .models import *
 from import_export.admin import ExportActionMixin
 class SalaLineAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ['code','name']
-class ProductGroupAdmin(ExportActionMixin,admin.ModelAdmin):
+class ProductTargetGroupAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ["code","name"]
 class CenterAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ["code","name"]
@@ -16,7 +16,7 @@ class VisitorAdmin(ExportActionMixin,admin.ModelAdmin):
 class SetVisitorTargetAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ["visitor","pgroup","qnty"]
 admin.site.register(SaleLine,SalaLineAdmin)
-admin.site.register(ProductGroup,ProductGroupAdmin)
+admin.site.register(ProductTargetGroup,ProductTargetGroupAdmin)
 admin.site.register(CenterD,CenterAdmin)
 admin.site.register(CenterTargetDefinde,CenterTargetDefindeAdmin)
 admin.site.register(Superviser,SuperviserAdmin)

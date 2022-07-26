@@ -1,4 +1,5 @@
 from django.db import models
+from targets.models import ProductTargetGroup
 class MainGroup(models.Model):
     code = models.IntegerField()
     name = models.CharField(max_length=255)
@@ -12,6 +13,7 @@ class ProductGroup (models.Model):
     name = models.CharField(max_length=255)
     maingroup = models.ForeignKey(MainGroup,on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
+    product_target_group= models.ForeignKey(ProductTargetGroup,on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 

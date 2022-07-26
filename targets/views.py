@@ -132,7 +132,7 @@ def insert_targets(request):
 
                 blanky=[]
                 for key , value in form.items():
-                    pg = ProductGroup.objects.get(id=int(key))
+                    pg = ProductTargetGroup.objects.get(id=int(key))
                     maping = dict(zip(visitors,value))
                     for id , num in maping.items():
                         visitor = Visitor.objects.get(id=int(id))
@@ -175,7 +175,7 @@ def insert_targets(request):
 def center_targets_definde(request):
     months = CenterTargetDefinde.Month.choices
     centers = TargetAccess.objects.get(user=request.user).centers.all()
-    pgs = ProductGroup.objects.all()
+    pgs = ProductTargetGroup.objects.all()
 
 
     if request.method == "POST":
@@ -186,7 +186,7 @@ def center_targets_definde(request):
         sended_centers = form['center']
         form.pop('center')
         for key,value in form.items():
-            pg = ProductGroup.objects.get(id=int(key))
+            pg = ProductTargetGroup.objects.get(id=int(key))
             for center , qnt in zip(sended_centers,value):
                 if CenterTargetDefinde.objects.filter(center_id = int(center),month = int(month),Pgroup_id = pg.id):
                     sended_target = CenterTargetDefinde.objects.filter(center_id = int(center),
