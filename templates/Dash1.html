@@ -1,82 +1,78 @@
 {% extends 'base.html' %}{% load static %}{% load costume_filters %}
 {% block Head %}
-    <script src="{% static 'jquery-3.3.1.js' %}"></script>
-    <script src="{% static 'jquery.dataTables.min.js' %}" type="text/javascript"></script>
-    <script type="text/javascript" src="{% static 'datatables.min.js' %}"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="{% static 'DataTables/Buttons-1.6.1/js/dataTables.buttons.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'DataTables/Buttons-1.6.1/css/buttons.bootstrap4.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 {% endblock %}
 {% block content %}
+<div class="container">
+<div class="row">
 
-    <div class="container mb-4 mt-3">
-    <h3>
-        {% if group %}
-        {{ group }}
-        {% endif %}
-    </h3>
-        <form method="post"class="form-check-inline">
-       <label for="goodgrup"> تولید کننده</label>
-            <select name="goodgroup" id="goodgrup">
-                {% for item in manufacturer %}
-{#                    {% if item|lookup:1 in inData %}#}
-                <option value="{{ item|lookup:0 }}">{{ item|lookup:1 }}</option>{% endfor %}
-{#                    {% endif %}#}
-            </select>
-        <label for="goodgrup">ماه </label>
-                    <select name="month" id="month">
+    <div class="col-md-3"></div>
+    <div class="col-md-6"><canvas id="myChart"></canvas></div>
+    <div class="col-md-3"></div>
 
-                    {% for item in rangeMonth %}
-{#                    {% if item|lookup:1 in inData %}#}
-                <option value="{{ item }}">{{ item }}</option>{% endfor %}
-{#                    {% endif %}#}
+    <div class="col-md-2"><img src='https://toppng.com/uploads/preview/gold-cup-trophy-11530997056wck1dfjo1g.png' style="width: 100%;height: 100%"></div>
+    <div class="col-md-2"><img src='https://toppng.com/uploads/preview/gold-cup-trophy-11530997056wck1dfjo1g.png' style="width: 100%;height: 100%"></div>
+    <div class="col-md-2"><img src='https://toppng.com/uploads/preview/gold-cup-trophy-11530997056wck1dfjo1g.png' style="width: 100%;height: 100%"></div>
+    <div class="col-md-2"><img src='https://toppng.com/uploads/preview/gold-cup-trophy-11530997056wck1dfjo1g.png' style="width: 100%;height: 100%"></div>
+    <div class="col-md-2"><img src='https://toppng.com/uploads/preview/gold-cup-trophy-11530997056wck1dfjo1g.png' style="width: 100%;height: 100%"></div>
+    <div class="col-md-2"><img src='https://toppng.com/uploads/preview/gold-cup-trophy-11530997056wck1dfjo1g.png' style="width: 100%;height: 100%"></div>
+</div>
 
-                    </select>
-
-
-            </select>
-            <input type="submit" title="SEND">
-
-{% csrf_token %}
-        </form>
-
-            <table id="datatable" class="table dataTable0" style="text-align: center">
-
-                <thead>
-                <tr>
-                    {% for col in data.columns %}
-                    <th scope="col" style="cursor: pointer">{{ col }}</th>
-                    {% endfor %}
-
-                </tr>
-                <tbody>
-                {% for items in data_list %}
-                    <tr>
-                    {% for num in items %}
-                        <td>{{ num|to_int }}  </td>
-                        {% endfor %}
-
-                    </tr>
-                    {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-{% endblock %}
-{% block js %}
+</div>
     <script>
-    $(document).ready( function () {
-    $('#datatable').DataTable(
-        {
-    extend: 'collection',
-                text: 'Export',
-                buttons: [
-                    'copy',
-                    'excel',
-                    'csv',
-                    'pdf',
-                    'print']
-});
-} );
+  const data = {
+  labels: [
+    'Eating',
+    'Drinking',
+    'Sleeping',
+    'Designing',
+    'Coding',
+    'Cycling',
+    'Running'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 90, 81, 56, 55, 40],
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }, {
+    label: 'My Second Dataset',
+    data: [28, 48, 40, 19, 96, 27, 100],
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
+  }]
+};
+  const config = {
+  type: 'radar',
+  data: data,
+  options: {
+    elements: {
+      line: {
+        borderWidth: 3
+      }
+    }
+  },
+};
 </script>
+<script>
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
+
+
+
+
 {% endblock %}

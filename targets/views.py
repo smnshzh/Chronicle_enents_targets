@@ -231,27 +231,27 @@ def center_targets_definde(request):
 
 
 
-
-# def makedata(request):
-#     path ='Book1.xlsx'
-#     df_visitors = pd.read_excel(path,sheet_name="Sheet1")
-#     df_super = pd.read_excel(path,sheet_name="super")
-#     df_visitor_list = df_visitors.values.tolist()
-#     df_super_list = df_super.values.tolist()
-#     # for item in df_super_list:
-#     #     Superviser.objects.create(
-#     #         code = int(item[0]),
-#     #         name = item[1],
-#     #         center= CenterD.objects.get(code=int(item[2]))
-#     #
-#     #     )
-#     for item in df_visitor_list :
-#         Visitor.objects.create(
-#             code = int(item[0]),
-#             name = item[1],
-#             cneter=CenterD.objects.get(code = int(item[4])),
-#             superviser=Superviser.objects.get(code = int(item[6])),
-#             line = SaleLine.objects.get(code=int(item[5])),
-#             status=True
-#         )
-#     return redirect('index')
+import pandas as pd
+def makedata(request):
+    path ='hadaf.xlsx'
+    center = pd.read_excel(path,sheet_name="center")
+    df_visitors = pd.read_excel(path,sheet_name="Sheet2")
+    df_super = pd.read_excel(path,sheet_name="super")
+    center_list = center.values.tolist()
+    df_visitor_list = df_visitors.values.tolist()
+    df_super_list = df_super.values.tolist()
+    # for item in df_super_list:
+    #     Superviser.objects.create(
+    #         code = int(item[1]),
+    #         name = item[0],
+    #         center= CenterD.objects.get(code=int(item[3])))
+    for item in df_visitor_list :
+        Visitor.objects.create(
+            code = int(item[0]),
+            name = item[1],
+            cneter=CenterD.objects.get(code = int(item[3])),
+            superviser=Superviser.objects.get(code = int(item[2])),
+            line = SaleLine.objects.get(code=int(item[4])),
+            status=True
+        )
+    return redirect('index')

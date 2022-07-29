@@ -4,6 +4,10 @@ from django.core import serializers
 import pandas as pd
 def dashboard(request):
 
+    return render(request,'Dash1.html',{})
+
+def flex(request):
+
 
     return render(request, 'dashboard_with_pivot.html', {})
 

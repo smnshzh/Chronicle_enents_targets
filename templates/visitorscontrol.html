@@ -51,6 +51,7 @@
                     <th scope="col" style="cursor: pointer">غیر فعال کردن </th>
                     <th scope="col" style="cursor: pointer">کد </th>
                     <th scope="col" style="cursor: pointer">نام ویزیتور</th>
+                    <th scope="col" style="cursor: pointer">لاین</th>
                     <th scope="col" style="cursor: pointer">سرپرست</th>
 
                 </tr>
@@ -67,6 +68,11 @@
                     <td><input type="checkbox"  name="visitor_active" value="{{ visitor.id }}"></td>
                         <td>{{ visitor.code }}  </td>
                 <td>{{ visitor.name }}</td>
+                    <td>{{ visitor.line }}  {% if visitor.line2 %}-
+                        {{ visitor.line2 }}
+                    {% endif %}
+
+                    </td>
                     <td>
                         <select name="{{ visitor.id }}" id="" >
                             {% for super in supervisers %}

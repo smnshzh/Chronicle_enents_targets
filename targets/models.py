@@ -77,7 +77,8 @@ class Visitor(models.Model):
     name = models.CharField(max_length=255)
     cneter = models.ForeignKey(CenterD,on_delete=models.CASCADE)
     superviser = models.ForeignKey(Superviser,on_delete=models.DO_NOTHING)
-    line = models.ForeignKey(SaleLine,on_delete=models.DO_NOTHING)
+    line = models.ForeignKey(SaleLine,on_delete=models.DO_NOTHING,related_name='line1')
+    line2 = models.ForeignKey(SaleLine, null=True,on_delete=models.DO_NOTHING,related_name='line2')
     status = models.BooleanField(default=False)
     def __str__(self):
         return self.name

@@ -34,13 +34,14 @@
                 <thead>
                 <tr>
                 <th scope="col" style="cursor: pointer">ردیف </th>
-
                     <th scope="col" style="cursor: pointer">کد </th>
                     <th scope="col" style="cursor: pointer">نام ویزیتور</th>
+                <th scope="col" style="cursor: pointer">لاین</th>
                     <th scope="col" style="cursor: pointer">سرپرست</th>
                     {% for pgroup in pgroups %}
                     <th scope="col" style="cursor: pointer">{{ pgroup.name }}</th>
                     {% endfor %}
+                <th scope="col" style="cursor: pointer">مجموع</th>
 
                 </tr>
                 <tbody>
@@ -54,26 +55,29 @@
                     <td>{{ forloop.counter }}</td>
 <td>{{ visitor.code }}</td>
                 <td>{{ visitor.name }}</td>
+                    <td>{{ visitor.line }} {% if visitor.line2 %}- {{ visitor.line2 }}{% endif %}</td>
                     <td>
-
-
                                {{ visitor.superviser.name }}
                     </td>
+                    {# Group will itrate here       #}
                     {% for pgroup in pgroups %}
-                        <input type="hidden" name="visitors" value="{{ visitor.id }}">
-                <td>
 
-                    <input class="input-group-sm small"
+                <td>
+<input type="hidden" name="visitors" value="{{ visitor.id }}">
+                    <input class="input-group-sm small {{ forloop.counter }}"
+
                            type="number"
                            name="{{ pgroup.id }}"
-                           min="0" {% if pgroup.id in pgroup_dict %}
+                           min="0"
+                        {#If target has ben difinded in database will shoed here#}
+                            {% if pgroup.id in pgroup_dict %}
                                 {% if visitor.id in pgroup_dict|lookup:pgroup.id %}
                                {% if pgroup_dict|lookup:pgroup.id|lookup:visitor.id %}
                            value="{{ pgroup_dict|lookup:pgroup.id|lookup:visitor.id }}"
                             {% endif %}{% endif %}{% endif %}>
                 </td>
                 {% endfor %}
-
+<td class="sum" id="{{ forloop.counter }}-sum"></td>
                         {% endfor %}
 
                     {% else %}

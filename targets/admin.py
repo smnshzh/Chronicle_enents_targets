@@ -12,7 +12,8 @@ class CenterTargetDefindeAdmin(ExportActionMixin,admin.ModelAdmin):
 class SuperviserAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ["code","name","center"]
 class VisitorAdmin(ExportActionMixin,admin.ModelAdmin):
-    list_display = ["code","name"]
+    list_display = ["code","name","line","line2","cneter"]
+    list_editable = ["name","line","line2","cneter"]
 class SetVisitorTargetAdmin(ExportActionMixin,admin.ModelAdmin):
     list_display = ["visitor","pgroup","qnty"]
 admin.site.register(SaleLine,SalaLineAdmin)
