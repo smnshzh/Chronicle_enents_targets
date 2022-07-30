@@ -6,3 +6,5 @@ class data(models.Model):
     returnSale = models.FileField(upload_to='media/data')
     date = models.DateTimeField(default=datetime.now())
     name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
