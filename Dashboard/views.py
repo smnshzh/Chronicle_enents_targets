@@ -1,10 +1,18 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.core import serializers
+from .models import data
 import pandas as pd
 def dashboard(request):
+    datas = data.objects.all().order_by("date")
+    df_sale = pd.read_excel(datas[0].sale.path)
+    df_return = pd.read_excel(datas[0].returnSale.path)
+    name = datas[0].name
+    context = {"sale":df_sale,
+               "retuen":df_return,
+               "name":name}
 
-    return render(request,'Dash1.html',{})
+    return render(request,'Dash1.html',context)
 
 def flex(request):
 
